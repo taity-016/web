@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>เข้าสู่ระบบ – BunnyPlanner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #f7e9e4; /* ชมพูน้ำตาลอ่อน */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-container {
+        background: #fff;
+        padding: 40px 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        width: 300px;
+    }
+
+    h2 {
+        color: #7b4b47; /* น้ำตาลเข้ม */
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: #fff;
+    }
+
+    .back {
+        background: #c27c78; /* ชมพูน้ำตาลเข้ม */
+    }
+    .back:hover {
+        background: #a05e5b;
+    }
+
+    .cancel {
+        background: #dc3545; /* แดงสำหรับยกเลิก */
+    }
+    .cancel:hover {
+        background: #a71d2a;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>เข้าสู่ระบบแล้วจ้า</h2>
+    <div class="buttons">
+        <button class="back" onclick="window.location.href='index.html'">กลับหน้าหลัก</button>
+        <button class="cancel" onclick="window.location.href='index.html'">ยกเลิก</button>
+    </div>
+</div>
+
+</body>
+</html>

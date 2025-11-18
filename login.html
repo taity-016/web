@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>BunnyPlanner – เข้าสู่ระบบ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    /* ----------------- Global ----------------- */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: #f7e9e4; /* ชมพูน้ำตาลอ่อน */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #7b4b47;
+        margin-bottom: 15px;
+    }
+
+    /* ----------------- Header ----------------- */
+    header {
+        width: 100%;
+        background: #c27c78; /* ชมพูน้ำตาลเข้ม */
+        padding: 12px 20px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    header nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: bold;
+    }
+
+    header nav a:hover {
+        color: #ffe3e3;
+    }
+
+    /* ----------------- Login Box ----------------- */
+    .login-box {
+        width: 350px;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        text-align: center;
+        animation: fadeIn 0.7s ease;
+    }
+
+    .login-box h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #7b4b47;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #7b4b47;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #d0b0a7;
+        background: #fff9f7;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    input:focus {
+        border-color: #c27c78;
+        outline: none;
+        background: #fff3f1;
+    }
+
+    button {
+        margin-top: 25px;
+        width: 100%;
+        padding: 12px;
+        background: #c27c78; /* ชมพูน้ำตาลเข้ม */
+        border: none;
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #a8625e;
+    }
+
+    .register-link {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #7b4b47;
+    }
+
+    .register-link a {
+        color: #c27c78;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+</style>
+</head>
+
+<body>
+
+<h1>BunnyPlanner</h1>
+
+<header>
+    <nav>
+        <a href="index.html">หน้าหลัก</a> |
+        <a href="create.html">ตารางเรียน</a> |
+        <a href="contact.html">ติดต่อ</a> |
+         <a href="login.html">เข้าสู่ระบบ</a>
+    </nav>
+</header>
+
+<div class="login-box">
+    <h2>เข้าสู่ระบบ BunnyPlanner</h2>
+
+    <form>
+        <label>ชื่อผู้ใช้</label>
+        <input type="text" placeholder="Username">
+
+        <label>รหัสผ่าน</label>
+        <input type="password" placeholder="Password">
+<button type="submit"><a href="lowin.html">เข้าสู่ระบบ</a></button>
+    </form>
+
+    <div class="register-link">
+        ยังไม่มีบัญชี? <a href="lowin.html">ลงทะเบียน</a>
+    </div>
+</div>
+
+</body>
+</html>

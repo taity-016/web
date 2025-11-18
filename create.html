@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>BunnyPlanner – สร้างตารางเรียน</title>
+
+<style>
+    body {
+        background: #f7e9e4;
+        font-family: 'Segoe UI', sans-serif;
+        padding: 20px;
+    }
+
+    header {
+        background: #c27c78;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    header a { 
+        color: white; 
+        text-decoration: none; 
+        margin-right: 20px; 
+    }
+
+    h2 { color: #7b4b47; }
+
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    label { display: block; margin-top: 10px; }
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    button:hover { background: #0056b3; }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background:white;
+    }
+
+    th, td {
+        border:1px solid #d8b6a7;
+        padding:6px;
+        text-align:center;
+    }
+
+    th { background:#e8c7c2; }
+
+    /* สีประจำวัน */
+    .mon { background:#ffe680 !important; }
+    .tue { background:#ffc2d1 !important; }
+    .wed { background:#c8f7c5 !important; }
+    .thu { background:#ffd4a3 !important; }
+    .fri { background:#cce7ff !important; }
+
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html">หน้าหลัก</a>|
+    <a href="create.html">สร้างตารางเรียน</a>|
+    <a href="contact.html">ติดต่อ</a> |
+    <a href="login.html">เข้าสู่ระบบ</a>
+</header>
+
+<h2>สร้างตารางเรียนใหม่</h2>
+
+<form id="classForm">
+    <label>วันเรียน:
+        <select id="day">
+            <option value="mon">จันทร์</option>
+            <option value="tue">อังคาร</option>
+            <option value="wed">พุธ</option>
+            <option value="thu">พฤหัสบดี</option>
+            <option value="fri">ศุกร์</option>
+        </select>
+    </label>
+
+    <label>เวลาเริ่ม (ชั่วโมง:นาที):
+        <input type="time" id="startTime" required>
+    </label>
+
+    <label>เวลาเลิก (ชั่วโมง:นาที):
+        <input type="time" id="endTime" required>
+    </label>
+
+    <label>ชื่อวิชา:
+        <input type="text" id="subject" placeholder="เช่น การเขียนโปรแกรม" required>
+    </label>
+
+    <button type="button" onclick="addClass()"><a href="crewin.html">เพิ่มลงตาราง</a></button>
+</form>
+
+<h2>ตารางเรียน</h2>
+<table id="scheduleTable">
+    <tr>
+        <th>วัน</th>
+        <th>08:15</th><th>09:15</th><th>10:15</th><th>11:15</th>
+        <th>12:15</th><th>13:15</th><th>14:15</th><th>15:15</th>
+    </tr>
+</table>
+
+<script>
+const scheduleTable = document.getElementById('scheduleTable');
+
+function addClass() {
+    const day = document.getElementById('day').value;
+    const startTime = document.getElementById('startTime').value;
+    const endTime = document.getElementById('endTime').value;
+    const subject = document.getElementById('subject').value.trim();
+
+    if (!startTime || !endTime || !subject) {
+        alert('กรุณากรอกข้อมูลให้ครบ');
+        return;
+    }
+
+    // สร้าง row ใหม่หรือแก้ไข row เก่าตามวัน
+    let row = document.querySelector(`#scheduleTable tr.${day}`);
+    if (!row) {
+        row = document.createElement('tr');
+        row.className = day;
+        const dayCell = document.createElement('td');
+        dayCell.innerText = dayName(day);
+        row.appendChild(dayCell);
+        for (let i = 0; i < 8; i++) { // 8 ช่วงเวลา
+            const td = document.createElement('td');
+            row.appendChild(td);
+        }
+        scheduleTable.appendChild(row);
+    }
+
+    // หา index ของเวลาเริ่มและเวลาเลิก (ง่ายๆ สมมติเป็นชั่วโมงเต็ม)
+    const timeMap = ["08:15","09:15","10:15","11:15","12:15","13:15","14:15","15:15"];
+    let startIndex = timeMap.indexOf(startTime);
+    let endIndex = timeMap.indexOf(endTime);
+
+    if (startIndex === -1 || endIndex === -1) {
+        alert("กรุณาเลือกเวลาในตารางที่กำหนด");
+        return;
+    }
+
+    for(let i = startIndex; i <= endIndex; i++){
+        row.cells[i+1].innerText = subject; // +1 เพราะ cell แรกคือวัน
+    }
+}
+
+// แปลงค่า class ให้เป็นชื่อวันภาษาไทย
+function dayName(code) {
+    switch(code){
+        case "mon": return "จันทร์";
+        case "tue": return "อังคาร";
+        case "wed": return "พุธ";
+        case "thu": return "พฤหัสบดี";
+        case "fri": return "ศุกร์";
+        default: return "";
+    }
+}
+</script>
+
+</body>
+</html>
